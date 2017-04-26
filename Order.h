@@ -2,6 +2,7 @@
 #define ORDER_H
 
 #include <iostream>
+#include <string>
 #include "Time.h"
 
 
@@ -33,6 +34,13 @@ class Order
 		string toString();
 
 	private:
+
+		string orderInfo;
+		Time orderedTime;
+		Time deliveredTime;
+		int stateOfOrder; //0:at the restaurant, 1:out for delivery, 2:delivered
+
+
 
 };
 
