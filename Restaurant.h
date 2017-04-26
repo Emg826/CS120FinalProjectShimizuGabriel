@@ -1,11 +1,3 @@
-//
-//  Restaurant.h
-//  
-//
-//  Created by Eric G on 4/26/17.
-//
-//
-
 #ifndef RESTAURANT_H
 #define RESTAURANT_H
 
@@ -39,17 +31,17 @@ public:
 	// Return Driver name
 	// Pre: driver exists (if not, return nullptr)
 	// Post: logged in or not, returns pointer to driver
-	Driver* getDriver(string driverName);
+	Driver getDriver(string driverName);
 
 	// Employ a driver
 	// Pre: none
 	// Post: add a driver to the system
-	void addDriver(Driver* driver);
+	void addDriver(Driver driver);
 
 	// Add order
 	// Pre: none
 	// Post: push order to cooking queue
-	void addOrder(Order* order);
+	void addOrder(Order order);
 
 	// Serve next order
 	// Pre: cooking queue not empty
@@ -59,12 +51,12 @@ public:
 	// Depart next order
 	// Pre: none
 	// Post: removes oldest order from departure queue and returns it
-	Order* departNextOrder() throw(logic_error);
+	Order departNextOrder() throw(logic_error);
 
 	// Deliver order
 	// Pre: none
 	// Post: order carried by driver delivered @ given time; drive gets tip
-	void deliver(Driver* driver, Time time, float tip);
+	void deliver(Driver driver, Time time, float tip);
 
 private:
 	queue<Order> cookingQueue;
