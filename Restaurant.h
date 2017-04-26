@@ -53,7 +53,7 @@ public:
     void serveNextOrder() throw(logic_error);
     
     // Depart next order
-    // Pre: none
+    // Pre: departure queue not empty
     // Post: removes oldest order from departure queue and returns it
     Order* departNextOrder() throw(logic_error);
     
