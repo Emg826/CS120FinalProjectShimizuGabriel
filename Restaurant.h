@@ -62,6 +62,8 @@ private:
 	queue<Order> cookingQueue;
 	queue<Order> departureQueue;
 	vector<Driver> driverVector;
+	
+	int ordersInCooking = 0, ordersInDeparture = 0;
 };
 
 #endif
