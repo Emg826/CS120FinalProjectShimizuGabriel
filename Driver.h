@@ -63,6 +63,17 @@ class Driver
 
 	private:
 
+		Order currentOrder;
+		string nameOfDriver;
+		Time departureTime;
+		Time deliveryTime;
+		Time arrivalTime;
+		float TotalTips;
+		int numOfDeliveries;
+		int TotalMinDelivering;
+		int TotalMinDriving;
+		int stateOfDriver; //0:logged out, 1:logged in and at the restaurant
+						   //2:delivering, 3:driving
 };
 
 #endif
