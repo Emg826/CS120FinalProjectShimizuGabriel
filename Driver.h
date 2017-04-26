@@ -35,22 +35,22 @@ class Driver
 		void arrive(Time time) throw (logic_error);
 
 		//Post: Returns the driver’s name. 
-		string getName();
+		string getName() const;
 
 		//Post: Returns true if and only if the driver is logged in.
 		bool isLoggedIn();
 
 		//Post: Returns the total number of completed deliveries.
-		int getTotalDeliveries();
+		int getTotalDeliveries() const;
 
 		//Post: Returns the total minutes spent delivering(i.e., between “depart” and “deliver” commands).
-		int getTotalMinDelivering();
+		int getTotalMinDelivering() const;
 
 		//Post: Returns the total minutes spent driving (i.e., between “depart” and “arrive” commands).
-		int getTotalMinDriving();
+		int getTotalMinDriving() const;
 
 		//Post: Returns the total tips received, in dollars.
-		float getTotalTips();
+		float getTotalTips() const;
 
 		//Pre: Driver is delivering. 
 		//Post: Returns the order being delivered.
@@ -59,6 +59,11 @@ class Driver
 		//Post: Returns a string containing the driver’s name, state (e.g., not logged in), 
 		//and, if the driver is delivering an order, the departure time and toString of the order being delivered.
 		string toString();
+
+		//Post: Gets the state of a driver
+		//0:logged out, 1:logged in and at the restaurant
+		//2:delivering, 3:driving
+		int getState() const;
 
 
 	private:
@@ -77,3 +82,4 @@ class Driver
 };
 
 #endif
+
