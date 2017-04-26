@@ -14,14 +14,19 @@ void Restaurant::status() {
 // Pre: none
 // Post: print summary statistics on orders and drivers
 void Restaurant::summary() {
+	// print 
 
 }
 
 // Return Driver name
-// Pre: driver exists (if not, return nullptr)
-// Post: logged in or not, returns pointer to driver
-Driver Restaurant::getDriver(string driverName) {
-
+Driver Restaurant::getDriver(string driverName) {    
+	for(int i = 0; i < driverVector.size(); i++) {
+        	if(driverVector[i].getName() == driverName)
+			return &driverVector[i];
+    }
+    
+    // If haven't already returned, then driver does not exist
+    return nullptr;
 }
 
 // Employ a driver
