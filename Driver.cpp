@@ -11,7 +11,8 @@ Driver::Driver(string name)
 	TotalMinDelivering = 0;
 	TotalMinDriving = 0;
 	
-	//sets state: 0 for logged out, 1 for logged in and waiting, 2 for delivering
+	//sets state
+	// 0 for logged out, 1 for waiting, 2 for delivering, 3 for driving back
 	stateOfDriver = 1;
 	
 }
@@ -40,7 +41,9 @@ void Driver::depart(Time time, Order o) throw(logic_error)
 		departureTime = time;
 		currentOrder = o;
 	}
-		
+	
+	else
+		throw logic_error("Driver is not logged in and at the restaurant.");
 }
 
 void Driver::deliver(Time time, float tip) throw(logic_error)
@@ -103,6 +106,8 @@ Order Driver::getOrder() throw(logic_error)
 {
 	if(stateOfDriver == 2)
 		return currentOrder;
+	else
+		throw logic_error("Driver is not delivering right now");
 }
 
 string Driver::toString()
