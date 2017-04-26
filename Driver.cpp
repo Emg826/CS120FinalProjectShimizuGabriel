@@ -11,7 +11,7 @@ Driver::Driver(string name)
 	TotalMinDelivering = 0;
 	TotalMinDriving = 0;
 	
-	//sets state
+	//sets state: 0 for logged out, 1 for logged in and waiting, 2 for delivering
 	stateOfDriver = 1;
 	
 }
