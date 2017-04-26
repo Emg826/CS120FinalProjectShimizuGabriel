@@ -6,11 +6,12 @@
 //
 //
 
-#ifndef Restaurant_hpp
-#define Restaurant_hpp
+#ifndef RESTAURANT_H
+#define RESTAURANT_H
 
 #include <stdio.h>
 #include <cstring>
+#include <queue>
 
 using namespace std;
 
@@ -61,10 +62,10 @@ public:
     // Post: order carried by driver delivered @ given time; drive gets tip
     void deliver(Driver* driver, Time time, float tip);
     
-    
-    
 private:
-    
+    queue<Order> cookingQueue;
+    queue<Order> departureQueue;
+    vector<Driver> driverVector;
 };
 
 #endif
