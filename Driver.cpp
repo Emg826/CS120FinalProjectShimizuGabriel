@@ -12,7 +12,6 @@ Driver::Driver(string name)
 	TotalMinDriving = 0;
 	
 	//sets state
-	// 0 for logged out, 1 for waiting, 2 for delivering, 3 for driving back
 	stateOfDriver = 1;
 	
 }
@@ -41,9 +40,7 @@ void Driver::depart(Time time, Order o) throw(logic_error)
 		departureTime = time;
 		currentOrder = o;
 	}
-	
-	else
-		throw logic_error("Driver is not logged in and at the restaurant.");
+		
 }
 
 void Driver::deliver(Time time, float tip) throw(logic_error)
@@ -72,7 +69,7 @@ void Driver::arrive(Time time) throw(logic_error)
 		throw logic_error("Driver is not on the way back from a delivery.");
 }
 
-string Driver::getName()
+string Driver::getName() const
 {
 	return nameOfDriver;
 }
@@ -82,22 +79,22 @@ bool Driver::isLoggedIn()
 	return (stateOfDriver == 1);
 }
 
-int Driver::getTotalDeliveries()
+int Driver::getTotalDeliveries() const
 {
 	return numOfDeliveries;
 }
 
-int Driver::getTotalMinDelivering()
+int Driver::getTotalMinDelivering() const
 {
 	return TotalMinDelivering;
 }
 
-int Driver::getTotalMinDriving()
+int Driver::getTotalMinDriving() const
 {
 	return TotalMinDriving;
 }
 
-float Driver::getTotalTips()
+float Driver::getTotalTips() const
 {
 	return TotalTips;
 }
@@ -106,8 +103,6 @@ Order Driver::getOrder() throw(logic_error)
 {
 	if(stateOfDriver == 2)
 		return currentOrder;
-	else
-		throw logic_error("Driver is not delivering right now");
 }
 
 string Driver::toString()
@@ -127,4 +122,9 @@ string Driver::toString()
 	driverInfo = nameOfDriver + stateString;
 
 	return driverInfo;
+}
+
+int Driver::getState() const
+{
+	return stateOfDriver;
 }
