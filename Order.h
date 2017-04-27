@@ -33,6 +33,9 @@ class Order
 		//Post: Returns a string containing the order time and info. 
 		string toString();
 
+		//0:at the restaurant, 1:out for delivery, 2:delivered
+		int getOrderState() const;
+
 	private:
 
 		string orderInfo;
@@ -40,9 +43,6 @@ class Order
 		Time deliveredTime;
 		int stateOfOrder; //0:at the restaurant, 1:out for delivery, 2:delivered
 
-
-
 };
 
 #endif
-
