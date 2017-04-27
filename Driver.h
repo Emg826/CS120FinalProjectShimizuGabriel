@@ -63,7 +63,7 @@ class Driver
 		//Post: Gets the state of a driver
 		//0:logged out, 1:logged in and at the restaurant
 		//2:delivering, 3:driving
-		int getState() const;
+		int getDriverState() const;
 
 
 	private:
