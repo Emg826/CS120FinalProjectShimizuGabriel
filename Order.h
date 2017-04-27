@@ -36,6 +36,9 @@ class Order
 		//0:at the restaurant, 1:out for delivery, 2:delivered
 		int getOrderState() const;
 
+		//Overloaded assignment operator
+		Order& operator=(const Order& other);
+
 	private:
 
 		string orderInfo;
@@ -46,3 +49,4 @@ class Order
 };
 
 #endif
+
