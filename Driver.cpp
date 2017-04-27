@@ -18,10 +18,11 @@ Driver::Driver(string name)
 
 void Driver::login() throw(logic_error)
 {
-	if (stateOfDriver == 1)
-		throw logic_error("Driver is already logged in.");
-	else
+	if (stateOfDriver == 0)
 		stateOfDriver = 1;
+	else
+		throw logic_error("Driver is already logged in, delivering, or driving.");
+	
 }
 
 void Driver::logout() throw(logic_error)
@@ -40,6 +41,8 @@ void Driver::depart(Time time, Order o) throw(logic_error)
 		departureTime = time;
 		currentOrder = o;
 	}
+	else
+		throw logic_error("Driver is not logged in or at the restaurant.");
 		
 }
 
@@ -101,8 +104,10 @@ float Driver::getTotalTips() const
 
 Order Driver::getOrder() throw(logic_error)
 {
-	if(stateOfDriver == 2)
+	if (stateOfDriver == 2)
 		return currentOrder;
+	else
+		throw logic_error("Driver is not delivering");
 }
 
 string Driver::toString()
@@ -111,13 +116,13 @@ string Driver::toString()
 	string stateString;
 
 	if (stateOfDriver == 0)
-		stateString = "logged out.";
+		stateString = ", logged out.";
 	if (stateOfDriver == 1)
-		stateString = "logged in and at the restaurant.";
+		stateString = ", logged in and at the restaurant.";
 	if (stateOfDriver == 2)
-		stateString = "delivering, " + departureTime.toString() + ", " + currentOrder.toString() + ".";
+		stateString = ", delivering, " + departureTime.toString() + ", " + currentOrder.toString() + ".";
 	if (stateOfDriver == 3)
-		stateString = "driving back from a delivery.";
+		stateString = ", driving back from a delivery.";
 
 	driverInfo = nameOfDriver + stateString;
 
