@@ -54,3 +54,11 @@ int Order::getOrderState() const
 	return stateOfOrder;
 }
 
+Order & Order::operator=(const Order & other)
+{
+	orderInfo = other.orderInfo;
+	orderedTime = other.orderedTime;
+	deliveredTime = other.deliveredTime;
+	stateOfOrder = other.stateOfOrder;
+}
+
