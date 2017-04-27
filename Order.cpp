@@ -3,14 +3,15 @@
 
 Order::Order()
 {
+	Time time;
 	stateOfOrder = 0;
+	orderedTime = time;
+	orderInfo = "2 pizzas to Lowry";
 }
 
 Order::Order(Time time, string info)
+:stateOfOrder(0), orderedTime(time), orderInfo(info)
 {
-	stateOfOrder = 0;
-	orderedTime = time;
-	orderInfo = info;
 }
 
 void Order::depart() throw(logic_error)
@@ -44,6 +45,12 @@ int Order::getMinToDelivery() throw(logic_error)
 
 string Order::toString()
 {
-	string timeAndInfo = orderedTime.toString() + orderInfo;
+	string timeAndInfo = orderedTime.toString() + ", " + orderInfo + ".";
 	return timeAndInfo;
 }
+
+int Order::getOrderState() const
+{
+	return stateOfOrder;
+}
+
