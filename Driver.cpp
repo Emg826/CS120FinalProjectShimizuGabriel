@@ -129,7 +129,7 @@ string Driver::toString()
 	return driverInfo;
 }
 
-int Driver::getState() const
+int Driver::getDriverState() const
 {
 	return stateOfDriver;
 }
