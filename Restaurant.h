@@ -31,12 +31,12 @@ public:
 	// Return Driver name
 	// Pre: driver exists (if not, return nullptr)
 	// Post: logged in or not, returns pointer to driver
-	Driver getDriver(string driverName);
+	Driver* getDriver(string driverName);
 
 	// Employ a driver
 	// Pre: none
 	// Post: add a driver to the system
-	void addDriver(Driver driver);
+	void addDriver(Driver& driver);
 
 	// Add order
 	// Pre: none
@@ -49,19 +49,21 @@ public:
 	void serveNextOrder() throw(logic_error);
 
 	// Depart next order
-	// Pre: none
+	// Pre: departure queue is not empty
 	// Post: removes oldest order from departure queue and returns it
 	Order departNextOrder() throw(logic_error);
-
-	// Deliver order
-	// Pre: none
-	// Post: order carried by driver delivered @ given time; drive gets tip
-	void deliver(Driver driver, Time time, float tip);
+    
+    /* DOES NOT WORK CORRECTLY AS OF NOW
+    // Select driver to deliver oldest order in departureQueue
+    // Pre: there are available drivers (if not, return nullptr)
+    // Post: return pointer to driver that is available to deliver
+    Driver* selectDriverToDeliver() throw(logic_error);
+    */
 
 private:
 	queue<Order> cookingQueue;
 	queue<Order> departureQueue;
-	vector<Driver> driverVector;
+	vector<Driver*> driverVector;
 	
 	int ordersInCooking = 0, ordersInDeparture = 0;
 };
