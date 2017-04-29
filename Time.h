@@ -33,5 +33,5 @@ private:
 	int hour;
 	int minute;
 
-}
+};
 #endif
