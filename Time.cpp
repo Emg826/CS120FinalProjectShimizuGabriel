@@ -23,7 +23,7 @@ Time::Time(int hr, int min) throw (logic_error) {
 }
 
 // Elapse Time
-static int Time::elapseMin(Time t1, Time t2) {
+int Time::elapseMin(Time t1, Time t2) {
 	static int t1TotalMin = t1.minute + (t1.hour * 60);
 	static int t2TotalMin = t2.minute + (t2.hour * 60);
 
@@ -32,7 +32,7 @@ static int Time::elapseMin(Time t1, Time t2) {
 
 // Time in string form
 string Time::toString() {
-	string currentTime = hour + ":" + minute;
+	string currentTime = to_string(hour) + ":" + to_string(minute);
 
 	return currentTime;
 }
