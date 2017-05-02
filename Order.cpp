@@ -45,7 +45,7 @@ int Order::getMinToDelivery() throw(logic_error)
 
 string Order::toString()
 {
-	string timeAndInfo = orderedTime.toString() + ", " + orderInfo + ".";
+	string timeAndInfo = orderInfo + "...ordered at " + orderedTime.toString() + ".";
 	return timeAndInfo;
 }
 
@@ -60,5 +60,7 @@ Order & Order::operator=(const Order & other)
 	orderedTime = other.orderedTime;
 	deliveredTime = other.deliveredTime;
 	stateOfOrder = other.stateOfOrder;
+    
+    return *this;
 }
 
