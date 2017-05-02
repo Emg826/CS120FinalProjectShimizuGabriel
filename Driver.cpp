@@ -66,7 +66,7 @@ void Driver::arrive(Time time) throw(logic_error)
 	{
 		stateOfDriver = 1;
 		arrivalTime = time;
-		TotalMinDriving += Time::elapseMin(deliveryTime, arrivalTime);
+		TotalMinDriving += Time::elapseMin(departureTime, arrivalTime);
 	}
 	else
 		throw logic_error("Driver is not on the way back from a delivery.");
@@ -116,13 +116,13 @@ string Driver::toString()
 	string stateString;
 
 	if (stateOfDriver == 0)
-		stateString = ", logged out.";
+		stateString = " is logged out.";
 	if (stateOfDriver == 1)
-		stateString = ", logged in and at the restaurant.";
+		stateString = " is logged in and at the restaurant.";
 	if (stateOfDriver == 2)
-		stateString = ", delivering, " + departureTime.toString() + ", " + currentOrder.toString() + ".";
+		stateString = " is delivering.\n» Departed at " + departureTime.toString() + " with order..." + currentOrder.toString();
 	if (stateOfDriver == 3)
-		stateString = ", driving back from a delivery.";
+		stateString = " is driving back from a delivery.";
 
 	driverInfo = nameOfDriver + stateString;
 
