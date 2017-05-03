@@ -40,6 +40,8 @@ void Driver::depart(Time time, Order o) throw(logic_error)
 		stateOfDriver = 2;
 		departureTime = time;
 		currentOrder = o;
+        
+        currentOrder.depart();
 	}
 	else
 		throw logic_error("Driver is not logged in or at the restaurant.");
@@ -55,8 +57,10 @@ void Driver::deliver(Time time, float tip) throw(logic_error)
 		numOfDeliveries++;
 		stateOfDriver = 3;
 		deliveryTime = time;
+        currentOrder.deliver(deliveryTime);
 		TotalTips += tip;
 		TotalMinDelivering += Time::elapseMin(departureTime, deliveryTime);
+        TotalFromOrderToDelivery += currentOrder.getMinToDelivery();
 	}
 }
 
@@ -95,6 +99,11 @@ int Driver::getTotalMinDelivering() const
 int Driver::getTotalMinDriving() const
 {
 	return TotalMinDriving;
+}
+
+int Driver::getTotalFromOrderToDeliver() const
+{
+    return TotalFromOrderToDelivery;
 }
 
 float Driver::getTotalTips() const
