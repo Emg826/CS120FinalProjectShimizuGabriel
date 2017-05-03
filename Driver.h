@@ -1,89 +1,121 @@
-#ifndef DRIVER_H
-#define DRIVER_H
+#include "Restaurant.h"
 
-#include <iostream>
-#include "Time.h"
-#include "Order.h"
+// Default Constructor
+Restaurant::Restaurant() {};
 
 
-using namespace std;
-
-class Driver
-{
-	public:
-		//Post: Creates a logged-in driver with the given name.
-		Driver(string name);
-
-		//Pre: Driver is not logged in. 
-		//Post: Logs the driver in.
-		void login() throw (logic_error);
-
-		//Pre: Driver is logged in and at the restaurant. 
-		//Post: Logs the driver out.
-		void logout() throw (logic_error);
-
-		//Pre: Driver is logged in and at the restaurant. 
-		//Post: Driver is delivering.Departure time is recorded.
-		void depart(Time time, Order o) throw (logic_error);
-
-		//Pre: Driver is delivering, tip >= 0. 
-		//Post: Driver is not delivering.Driver’s stats are updated.
-		void deliver(Time time, float tip) throw (logic_error);
-
-		//Pre: Driver is driving but not delivering. 
-		//Post: Driver is at the restaurant.Driver’s stats are updated.
-		void arrive(Time time) throw (logic_error);
-
-		//Post: Returns the driver’s name. 
-		string getName() const;
-
-		//Post: Returns true if and only if the driver is logged in.
-		bool isLoggedIn();
-
-		//Post: Returns the total number of completed deliveries.
-		int getTotalDeliveries() const;
-
-		//Post: Returns the total minutes spent delivering(i.e., between “depart” and “deliver” commands).
-		int getTotalMinDelivering() const;
-
-		//Post: Returns the total minutes spent driving (i.e., between “depart” and “arrive” commands).
-		int getTotalMinDriving() const;
+// Status of orders and drivers
+void Restaurant::status() const {
+	// Cooking order status
+    cout << "STATUS OF COOKING QUEUE" << endl;
+    cout << "Orders in Cooking Queue: " << ordersInCooking << endl << endl; // # of orders in cooking
+	
+    // Departure order status
+    cout << "STATUS OF DEPARTURE QUEUE" << endl;
+    cout << "Orders in Departure Queue: " << ordersInDeparture << endl << endl; // # orders in departure
+        
+    // Drivers and their orders status
+	cout << "STATUS OF DELIVERY DRIVERS" << endl;
+	for(int i = 0; i < driverVector.size(); i++) {
+        cout << "Driver " << i+1 << ": ";                    // driver number
+        cout << driverVector[i].toString() << endl;        // name and what driver is doing
+		        
+        cout << "Tips: " << driverVector[i].getTotalTips() << endl;   // tips
+        cout << "Minutes Delivering: " << driverVector[i].getTotalMinDelivering() << endl; // drive min
+        cout << "Deliveries: " << driverVector[i].getTotalDeliveries() << endl; // deliveries
+        
+        cout << endl;
+	}
     
-        //Post: Returns the total minutes from order to delivery
-        int getTotalFromOrderToDeliver() const;
-
-		//Post: Returns the total tips received, in dollars.
-		float getTotalTips() const;
-
-		//Pre: Driver is delivering. 
-		//Post: Returns the order being delivered.
-		Order getOrder() throw (logic_error);
-
-		//Post: Returns a string containing the driver’s name, state (e.g., not logged in), 
-		//and, if the driver is delivering an order, the departure time and toString of the order being delivered.
-		string toString() const;
-
-		//Post: Gets the state of a driver
-		//0:logged out, 1:logged in and at the restaurant
-		//2:delivering, 3:driving
-		int getDriverState() const;
+    cout << endl << endl;
+}
 
 
-	private:
+// Summary statistics
+// * will add more statistics later on...just want to see if this all works first
+void Restaurant::summary() const {
+    float totalTips = 0, totalDriveMins = 0, totalDeliveries = 0, totalDeliverMins = 0,
+          totalFromOrderToDeliver = 0;
+    
+    for(int i = 0; i < driverVector.size(); i++) {
+        totalTips += driverVector[i].getTotalTips();
+        
+        totalDriveMins += driverVector[i].getTotalMinDriving();
+        totalDeliveries += driverVector[i].getTotalDeliveries();
+        totalDeliverMins += driverVector[i].getTotalMinDelivering();
+        
+        totalFromOrderToDeliver += driverVector[i].getTotalFromOrderToDeliver();
+    }
+    
+    cout << "\n\n\n\n\n";
+    cout << "RESTAURANT SUMMARY" << endl;
+    
+    // Deliveries
+    cout << "Total deliveries: \t"    << totalDeliveries << endl;
+    cout << "Average deliveries per driver: \t" << totalDeliveries / driverVector.size() << endl;
+    cout << endl;
+    
+    // Drivers
+    cout << "Total tips: \t" << totalTips << endl;
+    cout << "Average round-trip in minutes: \t" << (totalDriveMins+totalDeliverMins)/driverVector.size() << endl;
+    cout << "Average time to drive to delivery: \t" << totalDeliverMins / totalDeliveries << endl;
+    cout << endl;
+    
+    // Orders
+    cout << "Average time from order to delivery: \t" << totalFromOrderToDeliver / totalDeliveries << endl;
+    cout << endl;
+}
 
-		Order currentOrder;
-		string nameOfDriver;
-		Time departureTime;
-		Time deliveryTime;
-		Time arrivalTime;
-		float TotalTips;
-		int numOfDeliveries;
-		int TotalMinDelivering;
-		int TotalMinDriving;
-        int TotalFromOrderToDelivery;
-		int stateOfDriver; //0:logged out, 1:logged in and at the restaurant
-						   //2:delivering, 3:driving
-};
 
-#endif
+// Return Driver object
+Driver* Restaurant::getDriver(const string driverName) {
+	for(int i = 0; i < driverVector.size(); i++) {
+        	if(driverVector[i].getName() == driverName)
+                return &driverVector[i];
+    }
+    
+    return nullptr; // if haven't already returned, then driver does not exist
+}
 
+
+// Employ a driver
+void Restaurant::addDriver(Driver& driver) {
+	driverVector.push_back(driver);
+}
+
+
+// Add order
+void Restaurant::addOrder(const Order order) {
+	cookingQueue.push(order);
+	ordersInCooking++;
+}
+
+
+// Serve next order
+void Restaurant::serveNextOrder() throw(logic_error) {
+	if (cookingQueue.empty())
+		throw logic_error("Error: cooking queue empty; cannot serve another order\n");
+
+	Order readyForDelivery = cookingQueue.front();  // copy order to move it to delivery
+	
+	cookingQueue.pop();                             // remove readyForDelivery from cookingQueue
+	ordersInCooking--;
+
+	departureQueue.push(readyForDelivery);          // push readyForDeliver to departureQueue
+	ordersInDeparture++;
+}
+
+
+// Depart next order
+// * would do something like:  driverXYZ.depart(currentTime, restaurantZYX.departNextOrder())
+Order Restaurant::departNextOrder() throw(logic_error) {
+	if (departureQueue.empty())
+		throw logic_error("Error: departure queue is empty; cannot deliver an order\n");
+
+	Order oldestOrder = departureQueue.front();
+	
+	departureQueue.pop();
+	ordersInDeparture--;
+	
+	return oldestOrder;
+}
