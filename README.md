@@ -1,3 +1,20 @@
+MAY 2, 2017 - EG
+Great news: main.cpp with TEST_1.txt now fully works! Woohoo!
+We still have a bit to do, but the project is really coming along!
+
+Feel free to look over and/or change anything I added. 
+
+I still need to add some interesting statistics to summary function, but 
+otherwise, I think that we are close to being done. Just a few more 
+things like writing a better TEST_1.txt and a writing a TEST_2.txt.
+
+In a bit more detail, wrote main(), changed up some of the toString()
+output messages, changed driverVector<Driver*> back to driverVector<Driver>,
+and a few other things. Those are the main ones, though, that you might
+want to look over.
+
+
+APRIL 28, 2017 - EG
 WHAT WE STILL NEED TO ADDRESS
 1. Should there be a “cooking process”? If so, how should we do it?
 
@@ -8,7 +25,6 @@ WHAT WE STILL NEED TO ADDRESS
 
 UPDATES (Newest to Oldest)
 
-April 28, 2017
 Time.cpp 
 + added to_string for string concatenation in toString function (line35)
 
