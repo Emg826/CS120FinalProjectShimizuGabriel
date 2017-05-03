@@ -66,7 +66,7 @@ void Driver::arrive(Time time) throw(logic_error)
 	{
 		stateOfDriver = 1;
 		arrivalTime = time;
-		TotalMinDriving += Time::elapseMin(departureTime, arrivalTime);
+		TotalMinDriving += Time::elapseMin(deliveryTime, arrivalTime);
 	}
 	else
 		throw logic_error("Driver is not on the way back from a delivery.");
