@@ -48,6 +48,9 @@ class Driver
 
 		//Post: Returns the total minutes spent driving (i.e., between “depart” and “arrive” commands).
 		int getTotalMinDriving() const;
+    
+        //Post: Returns the total minutes from order to delivery
+        int getTotalFromOrderToDeliver() const;
 
 		//Post: Returns the total tips received, in dollars.
 		float getTotalTips() const;
@@ -77,6 +80,7 @@ class Driver
 		int numOfDeliveries;
 		int TotalMinDelivering;
 		int TotalMinDriving;
+        int TotalFromOrderToDelivery;
 		int stateOfDriver; //0:logged out, 1:logged in and at the restaurant
 						   //2:delivering, 3:driving
 };
