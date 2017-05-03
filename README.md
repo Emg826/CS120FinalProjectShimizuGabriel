@@ -47,11 +47,11 @@ Deliveries: 0
 RESTAURANT SUMMARY
 
 Total tips: 19.92
-Total minutes driving: 122
+Total minutes driving: 122 //Should be 116
 Total orders delivered: 2
 
 Average tip per driver: $6.64
-Average minutes driving per driver: 40.6667
+Average minutes driving per driver: 40.6667  //Wrong because Total minutes driving is not correct
 Average deliveries per driver: 0.666667
 
 
