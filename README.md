@@ -1,4 +1,4 @@
-MAY 2, 2017 - EG
+<header>MAY 2, 2017 UPDATES - EG</header>
 Great news: main.cpp with TEST_1.txt now fully works! Woohoo!
 We still have a bit to do, but the project is really coming along!
 
