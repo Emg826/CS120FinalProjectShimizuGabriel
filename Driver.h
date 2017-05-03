@@ -58,7 +58,7 @@ class Driver
 
 		//Post: Returns a string containing the driver’s name, state (e.g., not logged in), 
 		//and, if the driver is delivering an order, the departure time and toString of the order being delivered.
-		string toString();
+		string toString() const;
 
 		//Post: Gets the state of a driver
 		//0:logged out, 1:logged in and at the restaurant
