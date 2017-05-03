@@ -31,7 +31,7 @@ int Time::elapseMin(Time t1, Time t2) {
 }
 
 // Time in string form
-string Time::toString() {
+string Time::toString() const{
 	string currentTime = to_string(hour) + ":" + to_string(minute);
 
 	return currentTime;

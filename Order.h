@@ -31,7 +31,7 @@ class Order
 		int getMinToDelivery() throw (logic_error);
 
 		//Post: Returns a string containing the order time and info. 
-		string toString();
+		string toString() const;
 
 		//0:at the restaurant, 1:out for delivery, 2:delivered
 		int getOrderState() const;

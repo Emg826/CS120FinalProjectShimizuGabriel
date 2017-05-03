@@ -43,7 +43,7 @@ int Order::getMinToDelivery() throw(logic_error)
 		throw logic_error("Order is not delivered.");
 }
 
-string Order::toString()
+string Order::toString() const
 {
 	string timeAndInfo = orderInfo + "...ordered at " + orderedTime.toString() + ".";
 	return timeAndInfo;

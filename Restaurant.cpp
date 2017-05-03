@@ -5,7 +5,7 @@ Restaurant::Restaurant() {};
 
 
 // Status of orders and drivers
-void Restaurant::status() {
+void Restaurant::status() const {
 	// Cooking order status
     cout << "STATUS OF COOKING QUEUE" << endl;
     cout << "Orders in Cooking Queue: " << ordersInCooking << endl << endl; // # of orders in cooking
@@ -17,15 +17,12 @@ void Restaurant::status() {
     // Drivers and their orders status
 	cout << "STATUS OF DELIVERY DRIVERS" << endl;
 	for(int i = 0; i < driverVector.size(); i++) {
-        cout << "DRIVER " << i+1 << ": ";                    // driver number
-        cout << driverVector[i]->toString() << endl;        // name and what driver is doing
-		
-        if(driverVector[i]->getDriverState() == 2)          // if driver currently delivering...
-            cout << "...order details: " << driverVector[i]->getOrder().toString() << endl; // time & info
-        
-        cout << "Tips: " << driverVector[i]->getTotalTips() << endl;   // tips
-        cout << "Minutes Delivering: " << driverVector[i]->getTotalMinDriving() << endl; // drive min
-        cout << "Deliveries: " << driverVector[i]->getTotalDeliveries() << endl; // deliveries
+        cout << "Driver " << i+1 << ": ";                    // driver number
+        cout << driverVector[i].toString() << endl;        // name and what driver is doing
+		        
+        cout << "Tips: " << driverVector[i].getTotalTips() << endl;   // tips
+        cout << "Minutes Delivering: " << driverVector[i].getTotalMinDriving() << endl; // drive min
+        cout << "Deliveries: " << driverVector[i].getTotalDeliveries() << endl; // deliveries
         
         cout << endl;
 	}
@@ -36,13 +33,13 @@ void Restaurant::status() {
 
 // Summary statistics
 // * will add more statistics later on...just want to see if this all works first
-void Restaurant::summary() {
+void Restaurant::summary() const {
     float totalTips = 0, totalDriveMins = 0, totalDeliveries = 0;
     
     for(int i = 0; i < driverVector.size(); i++) {
-        totalTips += driverVector[i]->getTotalTips();
-        totalDriveMins += driverVector[i]->getTotalMinDriving();
-        totalDeliveries += driverVector[i]->getTotalDeliveries();
+        totalTips += driverVector[i].getTotalTips();
+        totalDriveMins += driverVector[i].getTotalMinDriving();
+        totalDeliveries += driverVector[i].getTotalDeliveries();
     }
     
     cout << "\n\n\n\n\n";
@@ -57,14 +54,15 @@ void Restaurant::summary() {
     cout << "Average tip per driver: \t$" << totalTips / driverVector.size() << endl;
     cout << "Average minutes driving per driver: \t" << totalDriveMins / driverVector.size() << endl;
     cout << "Average deliveries per driver: \t" << totalDeliveries / driverVector.size() << endl << endl;
+    
 }
 
 
 // Return Driver object
-Driver* Restaurant::getDriver(string driverName) {
+Driver* Restaurant::getDriver(const string driverName) {
 	for(int i = 0; i < driverVector.size(); i++) {
-        	if(driverVector[i]->getName() == driverName)
-                return driverVector[i];
+        	if(driverVector[i].getName() == driverName)
+                return &driverVector[i];
     }
     
     return nullptr; // if haven't already returned, then driver does not exist
@@ -73,12 +71,12 @@ Driver* Restaurant::getDriver(string driverName) {
 
 // Employ a driver
 void Restaurant::addDriver(Driver& driver) {
-	driverVector.push_back(&driver);
+	driverVector.push_back(driver);
 }
 
 
 // Add order
-void Restaurant::addOrder(Order order) {
+void Restaurant::addOrder(const Order order) {
 	cookingQueue.push(order);
 	ordersInCooking++;
 }
@@ -110,12 +108,10 @@ Order Restaurant::departNextOrder() throw(logic_error) {
 	departureQueue.pop();
 	ordersInDeparture--;
 	
-	// need way to select driver to deliver
 	return oldestOrder;
 }
 
-/* DOES NOT WORK CORRECTLY AS OF NOW
-// Select random available driver to deliver oldest order in departureQueue
+// Select driver to deliver oldest order in departureQueue
 Driver* Restaurant::selectDriverToDeliver() throw(logic_error){
     vector<Driver> availableDrivers;
     
@@ -131,7 +127,6 @@ Driver* Restaurant::selectDriverToDeliver() throw(logic_error){
     }
     
     
-    cout << "No available drivers\n" << endl;
     return nullptr; // if haven't already returned, then driver no available drivers
 }
-*/
+

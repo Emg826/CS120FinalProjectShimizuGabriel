@@ -21,17 +21,17 @@ public:
 	// Status of orders and drivers
 	// Pre: none
 	// Post: prints status of orders and logged-in drivers
-	void status();
+	void status() const;
 
 	// Summary statistics
 	// Pre: none
 	// Post: print summary statistics on orders and drivers
-	void summary();
+	void summary() const;
 
 	// Return Driver name
 	// Pre: driver exists (if not, return nullptr)
 	// Post: logged in or not, returns pointer to driver
-	Driver* getDriver(string driverName);
+	Driver* getDriver(const string driverName);
 
 	// Employ a driver
 	// Pre: none
@@ -41,7 +41,7 @@ public:
 	// Add order
 	// Pre: none
 	// Post: push order to cooking queue
-	void addOrder(Order order);
+	void addOrder(const Order order);
 
 	// Serve next order
 	// Pre: cooking queue not empty
@@ -53,17 +53,15 @@ public:
 	// Post: removes oldest order from departure queue and returns it
 	Order departNextOrder() throw(logic_error);
     
-    /* DOES NOT WORK CORRECTLY AS OF NOW
     // Select driver to deliver oldest order in departureQueue
     // Pre: there are available drivers (if not, return nullptr)
     // Post: return pointer to driver that is available to deliver
     Driver* selectDriverToDeliver() throw(logic_error);
-    */
 
 private:
 	queue<Order> cookingQueue;
 	queue<Order> departureQueue;
-	vector<Driver*> driverVector;
+	vector<Driver> driverVector;
 	
 	int ordersInCooking = 0, ordersInDeparture = 0;
 };

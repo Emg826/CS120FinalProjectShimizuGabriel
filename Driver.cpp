@@ -110,7 +110,7 @@ Order Driver::getOrder() throw(logic_error)
 		throw logic_error("Driver is not delivering");
 }
 
-string Driver::toString()
+string Driver::toString() const
 {
 	string driverInfo;
 	string stateString;
