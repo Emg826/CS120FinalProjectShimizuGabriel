@@ -21,7 +21,7 @@ void Restaurant::status() const {
         cout << driverVector[i].toString() << endl;        // name and what driver is doing
 		        
         cout << "Tips: " << driverVector[i].getTotalTips() << endl;   // tips
-        cout << "Minutes Delivering: " << driverVector[i].getTotalMinDriving() << endl; // drive min
+        cout << "Minutes Delivering: " << driverVector[i].getTotalMinDelivering() << endl; // drive min
         cout << "Deliveries: " << driverVector[i].getTotalDeliveries() << endl; // deliveries
         
         cout << endl;
@@ -110,23 +110,3 @@ Order Restaurant::departNextOrder() throw(logic_error) {
 	
 	return oldestOrder;
 }
-
-// Select driver to deliver oldest order in departureQueue
-Driver* Restaurant::selectDriverToDeliver() throw(logic_error){
-    vector<Driver> availableDrivers;
-    
-    for(int i = 0; i < driverVector.size(); i++) {  // compile list of available drivers
-        if(driverVector[i].getDriverState() == 1)
-            availableDrivers.push_back(driverVector[i]);
-    }
-    
-    if(!availableDrivers.empty()){    // if there are available drivers
-        srand(int(time(NULL)));
-        int randIndex = rand() % availableDrivers.size();
-        return getDriver(availableDrivers[randIndex].getName());    // Return random but available driver
-    }
-    
-    
-    return nullptr; // if haven't already returned, then driver no available drivers
-}
-
