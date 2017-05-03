@@ -1,0 +1,19 @@
+login David
+order 12:12 pizza with no cheese, bread, or sauce
+serve
+order 12:50 pizza with cheese
+depart 13:13 David
+serve
+deliver 14:14 David 12.34
+arrive 15:15 David
+depart 15:35 David
+deliver 15:55 David 7.58
+arrive 16:33 David
+logout David
+order 16:12 pizza with no cheese
+order 16:50 pizza with cheese
+serve
+
+status
+summary
+quit
