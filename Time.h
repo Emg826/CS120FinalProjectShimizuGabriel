@@ -1,64 +1,37 @@
-#ifndef RESTAURANT_H
-#define RESTAURANT_H
+#ifndef TIME_H
+#define TIME_H
 
-#include <stdio.h>
-#include <cstring>
-#include <queue>
+#include <iostream>
 #include <string>
-#include "Driver.h"
-#include "Order.h"
-#include "Time.h"
 
 using namespace std;
 
-class Restaurant {
+class Time {
 public:
-	// Default Constructor
+	// Default Time Constructor
 	// Pre: none
-	// Post: creates restaurant in intial state w/out drivers or orders
-	Restaurant();
+	// Post: creates Time object with default values
+	Time();
 
-	// Status of orders and drivers
+	// Parametrized Time Constructor
+	// Pre: 0 <= hour <= 23 and 0 <= min <= 59
+	// Post: creates Time object with given values
+	Time(int hr, int min) throw (logic_error);
+
+	// Elapse Time
 	// Pre: none
-	// Post: prints status of orders and logged-in drivers
-	void status() const;
+	// Post: returns difference in minutes between t1 and t2
+	//       0 minutes <= |t2-t1| <= 1439 minutes
+	static int elapseMin(Time t1, Time t2);
 
-	// Summary statistics
+	// Time in string form
 	// Pre: none
-	// Post: print summary statistics on orders and drivers
-	void summary() const;
+	// Post: returns time as string as military time
+	string toString() const;
 
-	// Return Driver name
-	// Pre: driver exists (if not, return nullptr)
-	// Post: logged in or not, returns pointer to driver
-	Driver* getDriver(const string driverName);
-
-	// Employ a driver
-	// Pre: none
-	// Post: add a driver to the system
-	void addDriver(Driver& driver);
-
-	// Add order
-	// Pre: none
-	// Post: push order to cooking queue
-	void addOrder(const Order order);
-
-	// Serve next order
-	// Pre: cooking queue not empty
-	// Post: removes oldest order from cooking queue; enqueues for delivery
-	void serveNextOrder() throw(logic_error);
-
-	// Depart next order
-	// Pre: departure queue is not empty
-	// Post: removes oldest order from departure queue and returns it
-	Order departNextOrder() throw(logic_error);
-    
 private:
-	queue<Order> cookingQueue;
-	queue<Order> departureQueue;
-	vector<Driver> driverVector;
-	
-	int ordersInCooking = 0, ordersInDeparture = 0;
-};
+	int hour;
+	int minute;
 
+};
 #endif
