@@ -53,11 +53,6 @@ public:
 	// Post: removes oldest order from departure queue and returns it
 	Order departNextOrder() throw(logic_error);
     
-    // Select driver to deliver oldest order in departureQueue
-    // Pre: there are available drivers (if not, return nullptr)
-    // Post: return pointer to driver that is available to deliver
-    Driver* selectDriverToDeliver() throw(logic_error);
-
 private:
 	queue<Order> cookingQueue;
 	queue<Order> departureQueue;
