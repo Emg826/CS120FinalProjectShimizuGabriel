@@ -1,3 +1,63 @@
+# MAY 3, 2017 IN LAB BUGS FOUND - SS
+-INPUT-
+login David
+order 12:12 pizza with no cheese, bread, or sauce
+serve
+login Byrnes
+order 12:50 pizza with cheese
+depart 13:13 David
+serve
+depart 13:45 Byrnes
+deliver 14:14 David 12.34
+deliver 15:00 Byrnes 7.58
+arrive 15:15 David
+arrive 15:55 Byrnes
+logout David
+order 16:12 pizza with no cheese
+order 16:50 pizza with cheese
+serve
+login Sommer
+status
+summary
+quit
+
+-OUTPUT-
+STATUS OF COOKING QUEUE
+Orders in Cooking Queue: 1
+
+STATUS OF DEPARTURE QUEUE
+Orders in Departure Queue: 1
+
+STATUS OF DELIVERY DRIVERS
+Driver 1: David is logged out.
+Tips: 12.34
+Minutes Delivering: 61
+Deliveries: 1
+
+Driver 2: Byrnes is logged in and at the restaurant.
+Tips: 7.58
+Minutes Delivering: 61  //This should be 75. Need to distinguish drivers' names.
+Deliveries: 1
+
+Driver 1: Sommer is logged in and at the restaurant.
+Tips: 0
+Minutes Delivering: 0
+Deliveries: 0
+
+RESTAURANT SUMMARY
+
+Total tips: 19.92
+Total minutes driving: 122
+Total orders delivered: 2
+
+Average tip per driver: $6.64
+Average minutes driving per driver: 40.6667
+Average deliveries per driver: 0.666667
+
+
+
+
+
 # MAY 2, 2017 UPDATES - EG
 
 Great news: main.cpp with TEST_1.txt now fully works! Woohoo!
