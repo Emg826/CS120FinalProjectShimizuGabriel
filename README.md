@@ -1,13 +1,13 @@
 # MAY 3, 2017 IN LAB BUGS FOUND - SS
 -INPUT-
-login David
-order 12:12 pizza with no cheese, bread, or sauce
-serve
-login Byrnes
-order 12:50 pizza with cheese
-depart 13:13 David
-serve
-depart 13:45 Byrnes
+login David  
+order 12:12 pizza with no cheese, bread, or sauce  
+serve  
+login Byrnes  
+order 12:50 pizza with cheese  
+depart 13:13 David  
+serve  
+depart 13:45 Byrnes  
 deliver 14:14 David 12.34
 deliver 15:00 Byrnes 7.58
 arrive 15:15 David
