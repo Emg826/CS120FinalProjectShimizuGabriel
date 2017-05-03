@@ -8,11 +8,27 @@ Restaurant::Restaurant() {};
 void Restaurant::status() const {
 	// Cooking order status
     cout << "STATUS OF COOKING QUEUE" << endl;
-    cout << "Orders in Cooking Queue: " << ordersInCooking << endl << endl; // # of orders in cooking
+    cout << "Orders in Cooking Queue: " << ordersInCooking << endl; // # of orders in cooking
+    
+    queue<Order> copyCooking = cookingQueue;
+    int i = 1;
+    while(!copyCooking.empty()){
+        cout << "Cooking Order " << i << ": " << copyCooking.front().toString() << endl;
+        copyCooking.pop();
+    }
+    cout << endl;
 	
     // Departure order status
     cout << "STATUS OF DEPARTURE QUEUE" << endl;
-    cout << "Orders in Departure Queue: " << ordersInDeparture << endl << endl; // # orders in departure
+    cout << "Orders in Departure Queue: " << ordersInDeparture << endl; // # orders in departure
+        
+    queue<Order> copyDeparture = departureQueue;
+    i  = 1;
+    while(!copyDeparture.empty()){
+        cout << "Departue Order " << i << ": " << copyDeparture.front().toString() << endl;
+        copyDeparture.pop();
+    }
+    cout << endl;
         
     // Drivers and their orders status
 	cout << "STATUS OF DELIVERY DRIVERS" << endl;
@@ -32,11 +48,11 @@ void Restaurant::status() const {
 
 
 // Summary statistics
-// * will add more statistics later on...just want to see if this all works first
 void Restaurant::summary() const {
     float totalTips = 0, totalDriveMins = 0, totalDeliveries = 0, totalDeliverMins = 0,
           totalFromOrderToDeliver = 0;
     
+    // Get relevant values from drivers
     for(int i = 0; i < driverVector.size(); i++) {
         totalTips += driverVector[i].getTotalTips();
         
