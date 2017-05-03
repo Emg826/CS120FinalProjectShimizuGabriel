@@ -37,7 +37,7 @@ int Order::getMinToDelivery() throw(logic_error)
 {
 	if (stateOfOrder == 2)
 	{
-		return Time::elapseMin(deliveredTime, orderedTime);
+		return Time::elapseMin(orderedTime, deliveredTime);
 	}
 	else
 		throw logic_error("Order is not delivered.");
