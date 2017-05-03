@@ -34,27 +34,36 @@ void Restaurant::status() const {
 // Summary statistics
 // * will add more statistics later on...just want to see if this all works first
 void Restaurant::summary() const {
-    float totalTips = 0, totalDriveMins = 0, totalDeliveries = 0;
+    float totalTips = 0, totalDriveMins = 0, totalDeliveries = 0, totalDeliverMins = 0,
+          totalFromOrderToDeliver = 0;
     
     for(int i = 0; i < driverVector.size(); i++) {
         totalTips += driverVector[i].getTotalTips();
+        
         totalDriveMins += driverVector[i].getTotalMinDriving();
         totalDeliveries += driverVector[i].getTotalDeliveries();
+        totalDeliverMins += driverVector[i].getTotalMinDelivering();
+        
+        totalFromOrderToDeliver += driverVector[i].getTotalFromOrderToDeliver();
     }
     
     cout << "\n\n\n\n\n";
-    cout << "RESTAURANT SUMMARY" << endl << endl;
+    cout << "RESTAURANT SUMMARY" << endl;
     
-    // Totals
+    // Deliveries
+    cout << "Total deliveries: \t"    << totalDeliveries << endl;
+    cout << "Average deliveries per driver: \t" << totalDeliveries / driverVector.size() << endl;
+    cout << endl;
+    
+    // Drivers
     cout << "Total tips: \t" << totalTips << endl;
-    cout << "Total minutes driving: \t" << totalDriveMins << endl;
-    cout << "Total orders delivered: \t"    << totalDeliveries << endl << endl;
+    cout << "Average round-trip in minutes: \t" << (totalDriveMins+totalDeliverMins)/driverVector.size() << endl;
+    cout << "Average time to drive to delivery: \t" << totalDeliverMins / totalDeliveries << endl;
+    cout << endl;
     
-    // Averages
-    cout << "Average tip per driver: \t$" << totalTips / driverVector.size() << endl;
-    cout << "Average minutes driving per driver: \t" << totalDriveMins / driverVector.size() << endl;
-    cout << "Average deliveries per driver: \t" << totalDeliveries / driverVector.size() << endl << endl;
-    
+    // Orders
+    cout << "Average time from order to delivery: \t" << totalFromOrderToDeliver / totalDeliveries << endl;
+    cout << endl;
 }
 
 
