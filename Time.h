@@ -27,7 +27,7 @@ public:
 	// Time in string form
 	// Pre: none
 	// Post: returns time as string as military time
-	string toString();
+	string toString() const;
 
 private:
 	int hour;
