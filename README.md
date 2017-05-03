@@ -1,4 +1,5 @@
-<header>MAY 2, 2017 UPDATES - EG</header>
+# MAY 2, 2017 UPDATES - EG
+
 Great news: main.cpp with TEST_1.txt now fully works! Woohoo!
 We still have a bit to do, but the project is really coming along!
 
@@ -14,7 +15,7 @@ and a few other things. Those are the main ones, though, that you might
 want to look over.
 
 
-APRIL 28, 2017 - EG
+# APRIL 28, 2017 - EG
 WHAT WE STILL NEED TO ADDRESS
 1. Should there be a “cooking process”? If so, how should we do it?
 
