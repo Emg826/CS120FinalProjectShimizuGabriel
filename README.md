@@ -1,3 +1,64 @@
+This is a simple simulation of a pizza delivery restaurant.
+
+This project required:
+  + Documentation and implementation of 4 classes
+  + Considering how 4 seperate but related classes should "interact"
+  + Finding a way to read in text from a .txt file and use it to issue commands
+  + Working together with a classmate and using GitHub
+  + Error checking, unit testing, and a variety of data structures
+  
+ The classes: 
+ + Driver class: tracks status of driver, tips, name, current order, etc.; after creation, stored in Restaurant object's "driverVector"
+ + Order class: tracks status of order, time ordered, what was ordered, delivery location; after creation, stored in Restaurant object's queues until depart for deliver where then stored in Driver object
+ + Time class: standardizes the way time is used; used in Order object for tracking progress and used in Driver class for tracking hours worked and performance
+ + Restaurant class: tracks/manages drivers, controls order initiation, compiles summmary statistics, tracks current status of all orders and drivers
+ 
+ Other files:
++ main.cpp: for parsing .txt files for keywords to determine what command needs to be executed
++ TEST_1.txt or TEST_2.txt: used as input for main.cpp for a whole "simulation" (order placement to order delivery and driver return); tests restaurant class functions correctly and thereby tests other 3 classse.
+
+Running the program (MacOS):
+1. Download zip file
+2. Navigate to file in terminal or just drag the folder onto the terminal window
+3. Open main.cpp and change `#define TEST_1` or `#define TEST_2` to 1 and the other to 0 to select a test 
+4. Save main.cpp
+5. In the terminal and in the CS120FinalProjectShimizuGabriel-master file, enter the command following command:
+        g++ -o simulation main.cpp driver.cpp time.cpp order.cpp restaurant.cpp to run 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROGRESS NOTES
+
+
 # MAY 3, 2017 IN LAB BUGS FOUND - SS  
 -INPUT-  
 login David  
