@@ -19,18 +19,12 @@ This project required:
 
 Running the program (MacOS):
 1. Download zip file
-2. Navigate to file in terminal or just drag the folder onto the terminal window
+2. Unzip the folder and navigate to file in terminal (or just drag the unzipped folder onto the terminal)
 3. Open main.cpp and change `#define TEST_1` or `#define TEST_2` to 1 and the other to 0 to select a test 
 4. Save main.cpp
-5. In the terminal and in the CS120FinalProjectShimizuGabriel-master file, enter the command following command:
-        g++ -o simulation main.cpp driver.cpp time.cpp order.cpp restaurant.cpp to run 
-
-
-
-
-
-
-
+5. In the terminal in the current directory ../CS120FinalProjectShimizuGabriel-master 4, enter the command following command:
+        `g++ -o simulation main.cpp driver.cpp time.cpp order.cpp restaurant.cpp`
+      to run the simulation test file. 
 
 
 
